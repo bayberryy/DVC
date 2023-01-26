@@ -10,33 +10,33 @@ stages:
       params.yaml:
         prepare.categories:
         - comp.graphics
-        - rec.sport.baseball
+        - sci.space
     outs:
     - path: data/prepared
-      md5: 77cdc4b415254bc15c5d109816504915.dir
-      size: 3279651
+      md5: 3a909cff29bc5982f1a7cedfbae14d58.dir
+      size: 3721980
       nfiles: 2
   featurize:
     cmd: py src/featurize.py data/prepared data/features
     deps:
     - path: data/prepared
-      md5: 77cdc4b415254bc15c5d109816504915.dir
-      size: 3279651
+      md5: 3a909cff29bc5982f1a7cedfbae14d58.dir
+      size: 3721980
       nfiles: 2
     - path: src/featurize.py
       md5: f9a567e8ed4b6649534fb1d0f29163b4
       size: 1745
     outs:
     - path: data/features
-      md5: 683147ce3d11b5b5457f7d78f86ee417.dir
-      size: 418297564
+      md5: bd8f83cc81185bd256ce1aee3d27456c.dir
+      size: 481545670
       nfiles: 2
   train:
     cmd: py src/train.py data/features model.pkl
     deps:
     - path: data/features
-      md5: 683147ce3d11b5b5457f7d78f86ee417.dir
-      size: 418297564
+      md5: bd8f83cc81185bd256ce1aee3d27456c.dir
+      size: 481545670
       nfiles: 2
     - path: src/train.py
       md5: 4e2d26dcdf7e68de9b6c639ef4a15086
@@ -46,25 +46,25 @@ stages:
         train.alpha: 0.9
     outs:
     - path: model.pkl
-      md5: 30c8baa0506c987cfcab8df26668511f
-      size: 850894
+      md5: 49d508b23e61f05a24307e49839d9e86
+      size: 982958
   evaluate:
     cmd: py src/evaluate.py model.pkl data/features scores.json plots.json
     deps:
     - path: data/features
-      md5: 683147ce3d11b5b5457f7d78f86ee417.dir
-      size: 418297564
+      md5: bd8f83cc81185bd256ce1aee3d27456c.dir
+      size: 481545670
       nfiles: 2
     - path: model.pkl
-      md5: 30c8baa0506c987cfcab8df26668511f
-      size: 850894
+      md5: 49d508b23e61f05a24307e49839d9e86
+      size: 982958
     - path: src/evaluate.py
       md5: 11d9dabde94952ff57dd205ba12b440c
       size: 1405
     outs:
     - path: plots.json
-      md5: d40ddcc2727b33f1b7670aed34ba0870
-      size: 66364
+      md5: 90f6aa869edbdc0bba2969a4068c39ca
+      size: 70384
     - path: scores.json
-      md5: 28f813227633cee688a9ad8cf15a4dc3
+      md5: ad5de534a1a63db196e036efe9419fdc
       size: 27

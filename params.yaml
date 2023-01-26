@@ -2,6 +2,6 @@
 prepare:
     categories:
         - comp.graphics
-        - rec.sport.baseball
+        - sci.space
 train:
     alpha: 0.9
